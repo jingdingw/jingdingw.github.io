@@ -230,20 +230,6 @@ p { max-width: var(--measure); }
 
 /* ---------- research entries ---------- */
 
-.group { margin-bottom: 2.75rem; }
-.group:last-child { margin-bottom: 0; }
-
-.group-label {
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 600;
-  margin: 0 0 1.1rem;
-  padding-bottom: 0.45rem;
-  border-bottom: 1px solid var(--rule);
-}
-
 .entry {
   margin: 0 0 1.9rem;
   padding-left: 1.1rem;
@@ -358,4 +344,104 @@ footer {
   .nav-inner { padding: 0.7rem 1.25rem; gap: 0.5rem; }
   .nav-name { font-size: 0.95rem; }
   .nav-links { gap: 0.85rem; font-size: 0.8rem; }
+}
+
+/* ===============================================================
+   Multi-page additions
+   =============================================================== */
+
+/* Current page in the nav gets the accent + a rule under it. */
+.nav-links a[aria-current="page"] {
+  color: var(--accent);
+  font-weight: 500;
+  box-shadow: inset 0 -1px 0 0 var(--accent);
+}
+
+/* Subpage banner: title plus one orienting sentence. Stands in for the
+   hero, so it carries the same top spacing. */
+.page-head {
+  padding: 3.5rem 0 2.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.page-head h1 {
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.015em;
+}
+
+.page-head p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+}
+
+/* On subpages the first section sits under .page-head, which already
+   draws a rule — a second one doubles it up. */
+.page-head + section { border-top: none; }
+
+/* Homepage teaser cards linking through to the full pages. */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards a {
+  display: block;
+  height: 100%;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--bg-panel);
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.cards a:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+.cards .card-title {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 0.3rem;
+}
+
+.cards .card-note {
+  font-size: 0.89rem;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: none;
+}
+
+/* CV page: the PDF is embedded so visitors can read it without a
+   download, with the download link kept above it for anyone whose
+   browser refuses to render PDFs inline (most phones). */
+.pdf-frame {
+  width: 100%;
+  height: 78vh;
+  min-height: 480px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--bg-panel);
+}
+
+@media (max-width: 720px) {
+  .page-head { padding: 2.25rem 0 1.75rem; }
+  .pdf-frame { height: 60vh; min-height: 360px; }
+}
+
+/* Awarding institution under a grant title. Unlike .when it must wrap —
+   "Moynihan Institute of Global Affairs" would otherwise push the page
+   sideways on a phone. */
+.rows .org {
+  display: block;
+  font-size: 0.86rem;
+  color: var(--ink-faint);
+  font-style: italic;
+  margin-top: 0.1rem;
 }
