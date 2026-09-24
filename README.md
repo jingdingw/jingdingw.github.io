@@ -55,7 +55,13 @@ cp /path/to/new/Wang_CV.pdf files/Wang_CV.pdf
 git add -A && git commit -m "Update CV" && git push
 ```
 
-Also update the "Last updated" date in `cv.html` and in the footer of each page.
+Keep the filename `Wang_CV.pdf` — seven links across three pages point at it.
+
+**Then bump the version stamp.** Every CV link ends in `?v=2026-09-20`.
+Browsers cache PDFs hard, so without a new stamp anyone who already opened the
+old CV keeps seeing it. Find and replace the old date with the new one across
+all files (`Cmd+Shift+H` in VS Code), and update the "Last updated" line in
+`cv.html` to match.
 
 ## Previewing locally
 
